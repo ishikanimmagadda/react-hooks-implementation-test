@@ -1,4 +1,3 @@
-// src/AddTask.js
 import React, { useState } from 'react';
 import { useTasks } from './TaskContext';
 
@@ -6,11 +5,11 @@ const AddTask = () => {
     const [task, setTask] = useState('');
     const { addTask } = useTasks();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!task) return;
-        addTask({ name: task + " ", completed: false });
-        setTask('');
+        await addTask(task + " ");  // Call the context function which makes an API call
+        setTask('');  // Clear the input
     };
 
     return (
